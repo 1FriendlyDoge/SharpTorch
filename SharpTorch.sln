@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpTorch", "SharpTorch\SharpTorch.csproj", "{03760286-FB46-4AB5-AFD6-1AC3F2DDDBA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpTorchSamples", "SharpTorchSamples\SharpTorchSamples.csproj", "{81B1DDDA-79DA-44CD-8009-29B3F04538A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03760286-FB46-4AB5-AFD6-1AC3F2DDDBA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03760286-FB46-4AB5-AFD6-1AC3F2DDDBA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03760286-FB46-4AB5-AFD6-1AC3F2DDDBA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03760286-FB46-4AB5-AFD6-1AC3F2DDDBA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81B1DDDA-79DA-44CD-8009-29B3F04538A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81B1DDDA-79DA-44CD-8009-29B3F04538A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81B1DDDA-79DA-44CD-8009-29B3F04538A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81B1DDDA-79DA-44CD-8009-29B3F04538A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
