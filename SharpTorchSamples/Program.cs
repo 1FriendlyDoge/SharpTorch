@@ -2,5 +2,11 @@
 
 using SharpTorch;
 using SharpTorch.Layers;
+using SharpTorch.Losses;
+using SharpTorch.Models;
 
-Console.WriteLine("Hello, World!");
+SquaredAbsoluteLoss squaredAbsoluteLoss = new();
+TestModel m = new();
+
+Trainer<TestModel> trainer = new(m, squaredAbsoluteLoss, [], []);
+await trainer.Terminate();

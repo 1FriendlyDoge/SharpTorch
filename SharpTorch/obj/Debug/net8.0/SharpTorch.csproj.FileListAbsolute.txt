@@ -1,0 +1,5 @@
+/workspaces/SharpTorch/SharpTorch/obj/Debug/net8.0/SharpTorch.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/SharpTorch/SharpTorch/obj/Debug/net8.0/SharpTorch.AssemblyInfoInputs.cache
+/workspaces/SharpTorch/SharpTorch/obj/Debug/net8.0/SharpTorch.AssemblyInfo.cs
+/workspaces/SharpTorch/SharpTorch/obj/Debug/net8.0/SharpTorch.csproj.CoreCompileInputs.cache
+/workspaces/SharpTorch/SharpTorch/obj/Debug/net8.0/SharpTorch.sourcelink.json

@@ -3,52 +3,35 @@ using SharpTorch.Models;
 
 namespace SharpTorch;
 
-public class Trainer<TModel, TLoss> where TModel : ModelBase where TLoss : BaseLoss
+public class Trainer<TModel>(TModel model, BaseLoss loss, float[] x, float[] y, float learningRate = 0.01f, int batchSize = 32, int epochs = 10) where TModel : ModelBase<TModel>
 {
-    TModel Model { get; set; }
-    TLoss Loss { get; set; }
-    float LearningRate { get; set; }
-    int BatchSize { get; set; }
-    int Epochs { get; set; }
-    float[] X { get; set; }
-    float[] Y { get; set; }
-    
-    public Trainer(TModel model, TLoss loss, float[] x, float[] y, float learningRate = 0.01f, int batchSize = 32, int epochs = 10)
-    {
-        Model = model;
-        Loss = loss;
-        LearningRate = learningRate;
-        BatchSize = batchSize;
-        Epochs = epochs;
-        X = x;
-        Y = y;
-    }
-    
-    public async Task Train(CancellationToken cts)
+    private readonly CancellationTokenSource cts = new();
+
+    private TModel Model { get; set; } = model;
+    private BaseLoss Loss { get; set; } = loss;
+    private float LearningRate { get; set; } = learningRate;
+    private int BatchSize { get; set; } = batchSize;
+    private int Epochs { get; set; } = epochs;
+    private float[] X { get; set; } = x;
+    private float[] Y { get; set; } = y;
+
+    public Task Train()
     {
         for (int epoch = 0; epoch < Epochs; epoch++)
         {
             if(cts.IsCancellationRequested)
             {
-                return;
+                return Task.CompletedTask;
             }
-
-            await Parallel.ForAsync(0, MathF.Ceiling(X.Length / BatchSize), cts, x =>
-            {
-
-            });
         }
+
+        // TODO: Hardware accelerated loop
+
+        return Task.CompletedTask;
     }
-    
-    private float[] Backward(float[] yHat, float[] y)
+
+    public async Task Terminate()
     {
-        float[] gradients = new float[yHat.Length];
-        
-        for (int i = 0; i < yHat.Length; i++)
-        {
-            gradients[i] = 2 * (yHat[i] - y[i]);
-        }
-        
-        return gradients;
+        await cts.CancelAsync();
     }
 }

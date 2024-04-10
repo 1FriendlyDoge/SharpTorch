@@ -35,7 +35,7 @@ public class LinearLayer : BaseLayer
 
     private void RandomizeWeights()
     {
-        var random = new Random();
+        Random random = new();
         for (int i = 0; i < weights.Length; i++)
         {
             weights[i] = random.NextSingle();

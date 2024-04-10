@@ -4,7 +4,7 @@ namespace SharpTorch.Statics;
 
 public class Func
 {
-    public static T DeepCopy<T>(T obj)
+    public static T DeepCopy<T>(T obj) where T : class
     {
         using (MemoryStream stream = new())
         {
