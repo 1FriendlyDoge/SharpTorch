@@ -6,7 +6,7 @@ namespace SharpTorch.Models;
 public abstract class BaseModel
 {
     public BaseLayer[] Layers { get; set; }
-    public bool TrainMode { get; private set; } = true;
+    private bool TrainMode { get; set; } = true;
 
     protected BaseModel(BaseLayer[]? layers = null)
     {

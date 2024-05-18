@@ -1,4 +1,5 @@
-﻿using SharpTorch.Losses;
+﻿using SharpTorch.Layers;
+using SharpTorch.Losses;
 using SharpTorch.Models;
 using SharpTorch.Structs;
 
@@ -13,8 +14,9 @@ public class Trainer
     private int Epochs { get; set; }
     private float[,] X { get; set; }
     private float[,] Y { get; set; }
+    private int ValidationInterval { get; set; }
     
-    public Trainer(BaseModel model, BaseLoss loss, float[,] x, float[,] y, float learningRate = 0.01f, int batchSize = 1, int epochs = 10)
+    public Trainer(BaseModel model, BaseLoss loss, float[,] x, float[,] y, float learningRate = 0.01f, int batchSize = 1, int epochs = 10, int validationInterval = 5)
     {
         Model = model;
         Loss = loss;
@@ -23,13 +25,12 @@ public class Trainer
         Epochs = epochs;
         X = x;
         Y = y;
+        ValidationInterval = validationInterval;
     }
     
     public void Train(CancellationTokenSource? cts = null)
     {
         cts ??= new CancellationTokenSource();
-        
-        Model.Train();
         Console.WriteLine("Training...");
         for (int epoch = 0; epoch < Epochs; epoch++)
         {
@@ -41,6 +42,7 @@ public class Trainer
                 }
                 
                 Task[] tasks = new Task[BatchSize];
+                BackpropagationResult backpropagationResult = new(Model);
                 for (int batchIndex = 0; batchIndex < BatchSize; batchIndex++)
                 {
                     if (dataIndex + batchIndex >= X.Length)
@@ -49,8 +51,10 @@ public class Trainer
                     }
                     
                     int index = dataIndex + batchIndex;
-
                     int localEpoch = epoch;
+                    var localBatchIndex = batchIndex;
+                    
+                    Model.Train();
                     tasks[batchIndex] = Task.Run(() =>
                     {
                         float[] xData = Utils.Project1D(X, index);
@@ -59,27 +63,45 @@ public class Trainer
                         float[] yPredicted = Model.Forward(xData);
                         
                         float loss = Loss.CalculateAll(yPredicted, yResult);
-                        BackpropagationResult backpropagationResult = Backward(yPredicted, yResult, Loss);
-                        Model.UpdateValues(backpropagationResult, LearningRate);
-                        
-                        Console.WriteLine($"Epoch: {localEpoch + 1}, Loss: {loss}");
+                        backpropagationResult.Add(Backward(yPredicted, yResult, Loss));
                     }, cts.Token);
                 }
-                
                 Task.WaitAll(tasks);
+                backpropagationResult.Average(BatchSize);
+                Model.UpdateValues(backpropagationResult, LearningRate);
+            }
+            
+            if (epoch % ValidationInterval == 0)
+            {
+                PrintValidation(epoch);
             }
         }
     }
-    
-    public BackpropagationResult Backward(float[] yPredicted, float[] yResult, BaseLoss loss)
+
+    private void PrintValidation(int epoch)
+    {
+        Model.Eval();
+        float totalLoss = 0;
+        Parallel.For(0, X.Length, i =>
+        {
+            float[] xData = Utils.Project1D(X, i);
+            float[] yResult = Utils.Project1D(Y, i);
+            
+            float[] yPredicted = Model.Forward(xData);
+            totalLoss += Loss.CalculateAll(yPredicted, yResult);
+        });
+        Console.WriteLine($"Epoch: {epoch}, Validation Loss: {totalLoss / X.Length}");
+    }
+
+    private BackpropagationResult Backward(float[] yPredicted, float[] yResult, BaseLoss loss)
     {
         List<float[,]> weightGradients = [];
         List<float[]> biasGradients = [];
         
-        for (int i = 0; i < Model.Layers.Length; i++)
+        foreach (BaseLayer t in Model.Layers)
         {
-            weightGradients.Add(new float[Model.Layers[i].InputSize, Model.Layers[i].OutputSize]);
-            biasGradients.Add(new float[Model.Layers[i].OutputSize]);
+            weightGradients.Add(new float[t.InputSize, t.OutputSize]);
+            biasGradients.Add(new float[t.OutputSize]);
         }
         
         float[] outputGradients = loss.GradientAll(yPredicted, yResult);
@@ -88,16 +110,20 @@ public class Trainer
         {
             float[] inputGradients = new float[Model.Layers[i].InputSize];
 
-            for (int j = 0; j < Model.Layers[i].OutputSize; j++)
-            {
-                for (int k = 0; k < Model.Layers[i].InputSize; k++)
+            // Scope Copies
+            int i1 = i;
+            float[] gradients = outputGradients;
+            
+            Parallel.For(0, Model.Layers[i].OutputSize, j =>
+            { //(int j = 0; j < Model.Layers[i].OutputSize; j++)
+                for (int k = 0; k < Model.Layers[i1].InputSize; k++)
                 {
-                    weightGradients[i][k, j] = outputGradients[j] * Model.Layers[i].Inputs[k];
-                    inputGradients[k] += outputGradients[j] * Model.Layers[i].Weights[k, j];
+                    weightGradients[i1][k, j] = gradients[j] * Model.Layers[i1].Inputs[k];
+                    inputGradients[k] += gradients[j] * Model.Layers[i1].Weights[k, j];
                 }
 
-                biasGradients[i][j] = outputGradients[j];
-            }
+                biasGradients[i1][j] = gradients[j]; 
+            });
 
             outputGradients = inputGradients;
         }

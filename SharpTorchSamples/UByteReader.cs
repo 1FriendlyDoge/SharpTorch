@@ -2,7 +2,7 @@
 
 namespace SharpTorchSamples;
 
-public class UByteReader
+public static class UByteReader
 {
     public static byte[,,] ReadImagesFromIdx3Ubyte(string filePath)
     {
@@ -51,28 +51,49 @@ public class UByteReader
 
         return labels;
     }
-    
-    public static float[,,] ConvertToGrayscaleFloats(byte[,,] images)
+
+    public static float[,,] NormalizeToFloats(byte[,,] images)
     {
         int numberOfImages = images.GetLength(0);
         int height = images.GetLength(1);
         int width = images.GetLength(2);
-
-        float[,,] grayscaleImages = new float[numberOfImages, height, width];
-
+        
+        float[,,] floatImages = new float[numberOfImages, height, width];
+        
         for (int i = 0; i < numberOfImages; i++)
         {
             for (int j = 0; j < height; j++)
             {
                 for (int k = 0; k < width; k++)
                 {
-                    byte colorValue = images[i, j, k];
-                    grayscaleImages[i, j, k] = colorValue / 255.0f;
+                    floatImages[i, j, k] = images[i, j, k] / 255.0f;
                 }
             }
         }
-
-        return grayscaleImages;
+        
+        return floatImages;
+    }
+    
+    public static float[,,] ConvertToFloats(byte[,,] images)
+    {
+        int numberOfImages = images.GetLength(0);
+        int height = images.GetLength(1);
+        int width = images.GetLength(2);
+        
+        float[,,] floatImages = new float[numberOfImages, height, width];
+        
+        for (int i = 0; i < numberOfImages; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                for (int k = 0; k < width; k++)
+                {
+                    floatImages[i, j, k] = images[i, j, k];
+                }
+            }
+        }
+        
+        return floatImages;
     }
     
     public static Bitmap[] ConvertToBitmaps(byte[,,] images)

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SharpTorch")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2aad6e7a560d8aba0a2f7e1056ab8fa36981855c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80e5e98c95dd146f2720ddd93822e140af8cc69d")]
 [assembly: System.Reflection.AssemblyProductAttribute("SharpTorch")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SharpTorch")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
