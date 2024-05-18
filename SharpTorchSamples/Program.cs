@@ -16,18 +16,18 @@ using SharpTorch;
 using SharpTorch.Losses;
 using SharpTorchSamples;
 
-int inputSize = 500;
+int inputSize = 250;
 float[,] xData = new float[inputSize, 1];
 float[,] yData = new float[inputSize, 1];
 
 for (int i = 0; i < inputSize; i++)
 {
     xData[i, 0] = i;
-    yData[i, 0] = i * 2;
+    yData[i, 0] = i * 2 + 50;
 }
 
 TestModel model = new();
-Trainer trainer = new(model, new MeanSquaredError(), xData, yData, 1e-6f, 100, 1000000);
+Trainer trainer = new(model, new MeanSquaredError(), xData, yData, 1e-5f, 1, 10000);
 model.Train();
 trainer.Train();
 
@@ -35,4 +35,4 @@ model.Eval();
 float[] testInput = [5];
 float[] testOutput = model.Forward(testInput);
 
-Console.WriteLine($"Test input: {testInput[0]}, Test output: {testOutput[0]}, Expected output: {testInput[0] * 2}");
+Console.WriteLine($"Test input: {testInput[0]}, Test output: {testOutput[0]}, Expected output: {testInput[0] * 2 + 50}");

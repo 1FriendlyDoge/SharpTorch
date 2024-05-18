@@ -62,8 +62,9 @@ public class Trainer
                         
                         float[] yPredicted = Model.Forward(xData);
                         
-                        float loss = Loss.CalculateAll(yPredicted, yResult);
-                        backpropagationResult.Add(Backward(yPredicted, yResult, Loss));
+                        BackpropagationResult result = Backward(yPredicted, yResult, Loss);
+                        
+                        backpropagationResult.Add(result);
                     }, cts.Token);
                 }
                 Task.WaitAll(tasks);
@@ -115,13 +116,13 @@ public class Trainer
             float[] gradients = outputGradients;
             
             Parallel.For(0, Model.Layers[i].OutputSize, j =>
-            { //(int j = 0; j < Model.Layers[i].OutputSize; j++)
+            {
                 for (int k = 0; k < Model.Layers[i1].InputSize; k++)
                 {
                     weightGradients[i1][k, j] = gradients[j] * Model.Layers[i1].Inputs[k];
                     inputGradients[k] += gradients[j] * Model.Layers[i1].Weights[k, j];
                 }
-
+                
                 biasGradients[i1][j] = gradients[j]; 
             });
 

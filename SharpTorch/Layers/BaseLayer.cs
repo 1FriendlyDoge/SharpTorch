@@ -1,4 +1,5 @@
-﻿using SharpTorch.Models;
+﻿using SharpTorch.ActivationFunctions;
+using SharpTorch.Models;
 
 namespace SharpTorch.Layers;
 
@@ -8,16 +9,19 @@ public abstract class BaseLayer
     
     public int InputSize { get; init; }
     public int OutputSize { get; init; }
+
+    private BaseActivation? ActivationFunction { get; set; }
     
     public float[,] Weights = new float[0, 0];
     public float[] Biases = [];
     
     public float[] Inputs { get; private set; } = [];
 
-    protected BaseLayer(int inputSize, int outputSize)
+    protected BaseLayer(int inputSize, int outputSize, BaseActivation? activationFunction = null)
     {
         InputSize = inputSize;
         OutputSize = outputSize;
+        ActivationFunction = activationFunction;
     }
 
     public float[] Forward(float[] input)
@@ -27,7 +31,19 @@ public abstract class BaseLayer
             Inputs = input;
         }
         
-        return ForwardImplementation(input);
+        float[] values = ForwardImplementation(input);
+
+        if (ActivationFunction == null)
+        {
+            return values;
+        }
+
+        for (int i = 0; i < values.Length; i++)
+        {
+            values[i] = ActivationFunction.Activate(values[i]);
+        }
+
+        return values;
     }
 
     protected abstract float[] ForwardImplementation(float[] input);

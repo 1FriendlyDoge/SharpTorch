@@ -1,4 +1,5 @@
-﻿using SharpTorch.Layers;
+﻿using SharpTorch.ActivationFunctions;
+using SharpTorch.Layers;
 using SharpTorch.Models;
 
 namespace SharpTorchSamples;
@@ -9,7 +10,7 @@ public class TestModel : BaseModel
     {
         Layers =
         [
-            new LinearLayer(1, 1)
+            new LinearLayer(1, 1, new ReLU())
         ];
     }
 }

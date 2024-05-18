@@ -22,6 +22,11 @@ public abstract class BaseLoss
         for (int i = 0; i < yResult.Length; i++)
         {
             gradients[i] = CalculateDerivative(yPredicted[i], yResult[i]);
+
+            if (gradients[i] > 50000)
+            {
+                throw new Exception();
+            }
         }
         
         return gradients;

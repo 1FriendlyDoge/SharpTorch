@@ -1,8 +1,10 @@
-﻿namespace SharpTorch.Layers;
+﻿using SharpTorch.ActivationFunctions;
+
+namespace SharpTorch.Layers;
 
 public class LinearLayer : BaseLayer
 {
-    public LinearLayer(int inputSize, int outputSize, bool randomizedWeights = true) : base(inputSize, outputSize)
+    public LinearLayer(int inputSize, int outputSize, BaseActivation? activation = null, bool randomizedWeights = true) : base(inputSize, outputSize, activation)
     {
         Weights = new float[inputSize, outputSize];
         Biases = new float[outputSize];
