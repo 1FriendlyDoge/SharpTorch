@@ -1,6 +1,6 @@
 ﻿namespace SharpTorch.Interfaces;
 
-public interface ITrident<out T>
+public interface IClone<out T>
 {
     public T Clone();
 }

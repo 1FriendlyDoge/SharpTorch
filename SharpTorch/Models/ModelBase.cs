@@ -2,7 +2,7 @@
 
 namespace SharpTorch.Models;
 
-public abstract class ModelBase<T> : Interfaces.ITrident<T>
+public abstract class ModelBase
 {
     public BaseLayer[] Layers { get; set; }
 
@@ -20,6 +20,4 @@ public abstract class ModelBase<T> : Interfaces.ITrident<T>
         
         return input;
     }
-
-    public abstract T Clone();
 }
