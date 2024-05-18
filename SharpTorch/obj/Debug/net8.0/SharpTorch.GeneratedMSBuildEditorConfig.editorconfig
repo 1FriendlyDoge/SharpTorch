@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SharpTorch
-build_property.ProjectDir = /workspaces/SharpTorch/SharpTorch/
+build_property.ProjectDir = C:\Users\maxim\RiderProjects\SharpTorch\SharpTorch\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
