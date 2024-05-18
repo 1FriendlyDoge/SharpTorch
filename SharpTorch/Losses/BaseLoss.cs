@@ -2,6 +2,28 @@
 
 public abstract class BaseLoss
 {
-    public abstract float Calculate(float[] x, float[] y);
-    public abstract float[] Gradient(float[] x, float[] y);
+    protected abstract float Calculate(float yPredicted, float yResult);
+    protected abstract float CalculateDerivative(float yPredicted, float yResult);
+
+    public float CalculateAll(float[] yPredicted, float[] yResult)
+    {
+        float sum = 0;
+        for (int i = 0; i < yResult.Length; i++)
+        {
+            sum += Calculate(yPredicted[i], yResult[i]);
+        }
+        
+        return sum / yResult.Length;
+    }
+    
+    public float[] GradientAll(float[] yPredicted, float[] yResult)
+    {
+        float[] gradients = new float[yResult.Length];
+        for (int i = 0; i < yResult.Length; i++)
+        {
+            gradients[i] = CalculateDerivative(yPredicted[i], yResult[i]);
+        }
+        
+        return gradients;
+    }
 }

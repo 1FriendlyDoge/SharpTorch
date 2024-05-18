@@ -2,13 +2,14 @@
 
 public class MeanSquaredError : BaseLoss
 {
-    public override float Calculate(float[] x, float[] y)
+    protected override float Calculate(float yPredicted, float yResult)
     {
-        throw new NotImplementedException();
+        float diff = yPredicted - yResult;
+        return diff * diff;
     }
 
-    public override float[] Gradient(float[] x, float[] y)
+    protected override float CalculateDerivative(float yPredicted, float yResult)
     {
-        throw new NotImplementedException();
+        return 2.0f * (yPredicted - yResult) / 1;
     }
 }

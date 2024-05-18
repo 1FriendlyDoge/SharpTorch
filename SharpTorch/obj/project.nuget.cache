@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jyNc6IZnb94lQHlcMX7wjw4r/LfCs8YwvH+J0JJKdlETblttnzObhONCbOKugOcwjOlqI289oUnkVUjKdhTOgg==",
+  "dgSpecHash": "x4D1sIjzZ1kybF4jWgp2jzr0ibVHAITvW5uVaNm99EbYArQp52Md311KafgGtlqntjC0ZDtf18+LHWW1YpaZDw==",
   "success": true,
-  "projectFilePath": "/workspaces/SharpTorch/SharpTorch/SharpTorch.csproj",
+  "projectFilePath": "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorch\\SharpTorch.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

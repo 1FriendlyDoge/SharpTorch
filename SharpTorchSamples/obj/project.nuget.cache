@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "bHVtHHMQkUiGpPp6bXJsNIv1t4sktzbbz1fGaJpDfVooIkXuZW1F+2Db2U+/V7ryeiwn8kGfR6xaMqpdt6fK0g==",
+  "dgSpecHash": "hL+TEDDt+H9IxBjR1eAxpXWWFrgG7QQS4B/+8ux66z+WJ5WmD5YnXn5Fh07twG6twBOffleMdpIzgFAKRBMLig==",
   "success": true,
-  "projectFilePath": "/workspaces/SharpTorch/SharpTorchSamples/SharpTorchSamples.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorchSamples\\SharpTorchSamples.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\system.drawing.common\\8.0.5\\system.drawing.common.8.0.5.nupkg.sha512"
+  ],
   "logs": []
 }

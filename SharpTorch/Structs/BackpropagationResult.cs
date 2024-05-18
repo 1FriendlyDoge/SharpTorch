@@ -2,10 +2,10 @@
 
 public class BackpropagationResult
 {
-    public float[,] WeightGradients { get; init; }
-    public float[] BiasGradients { get; init; }
+    public List<float[,]> WeightGradients { get; init; }
+    public List<float[]> BiasGradients { get; init; }
     
-    public BackpropagationResult(float[,] weightGradients, float[] biasGradients)
+    public BackpropagationResult(List<float[,]> weightGradients, List<float[]> biasGradients)
     {
         WeightGradients = weightGradients;
         BiasGradients = biasGradients;

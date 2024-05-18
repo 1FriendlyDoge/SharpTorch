@@ -1,9 +1,18 @@
-﻿namespace SharpTorch.Layers;
+﻿using SharpTorch.Models;
+
+namespace SharpTorch.Layers;
 
 public abstract class BaseLayer
 {
-    protected int InputSize { get; init; }
-    protected int OutputSize { get; init; }
+    protected internal bool TrainMode { get; set; } = true;
+    
+    public int InputSize { get; init; }
+    public int OutputSize { get; init; }
+    
+    public float[,] Weights = new float[0, 0];
+    public float[] Biases = [];
+    
+    public float[] Inputs { get; private set; } = [];
 
     protected BaseLayer(int inputSize, int outputSize)
     {
@@ -11,5 +20,15 @@ public abstract class BaseLayer
         OutputSize = outputSize;
     }
 
-    public abstract float[] Forward(float[] input);
+    public float[] Forward(float[] input)
+    {
+        if (TrainMode)
+        {
+            Inputs = input;
+        }
+        
+        return ForwardImplementation(input);
+    }
+
+    protected abstract float[] ForwardImplementation(float[] input);
 }

@@ -1,2 +1,1 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("lol");
+﻿Console.WriteLine("womp womp");
