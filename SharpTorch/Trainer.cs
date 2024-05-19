@@ -2,6 +2,7 @@
 using SharpTorch.Layers;
 using SharpTorch.Losses;
 using SharpTorch.Models;
+using SharpTorch.Optimizers;
 using SharpTorch.Structs;
 
 namespace SharpTorch;
@@ -11,22 +12,28 @@ public class Trainer
     private BaseModel Model { get; set; }
     private BaseLoss Loss { get; set; }
     private float LearningRate { get; set; }
+    private float InitalLearningRate { get; set; }
+    private BaseOptimizer? Optimizer { get; set; }
     private int BatchSize { get; set; }
     private int Epochs { get; set; }
     private float[,] X { get; set; }
     private float[,] Y { get; set; }
     private int ValidationInterval { get; set; }
+    private int DisplayValidationInterval { get; set; }
     
-    public Trainer(BaseModel model, BaseLoss loss, float[,] x, float[,] y, float learningRate = 0.01f, int batchSize = 1, int epochs = 10, int validationInterval = 5)
+    public Trainer(BaseModel model, BaseLoss loss, float[,] x, float[,] y, float learningRate = 0.01f, BaseOptimizer? optimizer = null, int batchSize = 1, int epochs = 10, int validationInterval = 1, int displayValidationInterval = 5)
     {
         Model = model;
         Loss = loss;
         LearningRate = learningRate;
+        InitalLearningRate = learningRate;
+        Optimizer = optimizer;
         BatchSize = batchSize;
         Epochs = epochs;
         X = x;
         Y = y;
         ValidationInterval = validationInterval;
+        DisplayValidationInterval = displayValidationInterval;
     }
     
     public void Train(CancellationTokenSource? cts = null)
@@ -52,9 +59,7 @@ public class Trainer
                     }
                     
                     int index = dataIndex + batchIndex;
-                    int localEpoch = epoch;
-                    var localBatchIndex = batchIndex;
-                    
+
                     Model.Train();
                     tasks[batchIndex] = Task.Run(() =>
                     {
@@ -75,12 +80,12 @@ public class Trainer
             
             if (epoch % ValidationInterval == 0)
             {
-                PrintValidation(epoch);
+                RunValidation(epoch);
             }
         }
     }
 
-    private void PrintValidation(int epoch)
+    private void RunValidation(int epoch)
     {
         Model.Eval();
         float totalLoss = 0;
@@ -92,7 +97,16 @@ public class Trainer
             float[] yPredicted = Model.Forward(xData);
             totalLoss += Loss.CalculateAll(yPredicted, yResult);
         });
-        Console.WriteLine($"Epoch: {epoch}, Validation Loss: {totalLoss / X.Length}");
+        
+        if (Optimizer != null)
+        {
+            LearningRate = Optimizer.Optimize(totalLoss, InitalLearningRate);
+        }
+
+        if (epoch % DisplayValidationInterval == 0)
+        {
+            Console.WriteLine($"Epoch: {epoch}/{Epochs}, Loss: {totalLoss / X.Length}, LR: {LearningRate}");
+        }
     }
 
     private BackpropagationResult Backward(float[] yPredicted, float[] yResult, BaseLoss loss)

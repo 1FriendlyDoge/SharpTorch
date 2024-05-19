@@ -1,11 +1,14 @@
-﻿using SharpTorch.Layers;
+﻿using System.Reflection;
+using Newtonsoft.Json;
+using SharpTorch.ActivationFunctions;
+using SharpTorch.Layers;
 using SharpTorch.Structs;
 
 namespace SharpTorch.Models;
 
 public abstract class BaseModel
 {
-    public BaseLayer[] Layers { get; set; }
+    public BaseLayer[] Layers { get; protected set; }
     private bool TrainMode { get; set; } = true;
 
     protected BaseModel(BaseLayer[]? layers = null)

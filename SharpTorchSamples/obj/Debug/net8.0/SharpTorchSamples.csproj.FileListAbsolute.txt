@@ -17,8 +17,7 @@ C:\Users\maxim\RiderProjects\SharpTorch\SharpTorchSamples\obj\Debug\net8.0\refin
 C:\Users\maxim\RiderProjects\SharpTorch\SharpTorchSamples\obj\Debug\net8.0\SharpTorchSamples.pdb
 C:\Users\maxim\RiderProjects\SharpTorch\SharpTorchSamples\obj\Debug\net8.0\SharpTorchSamples.genruntimeconfig.cache
 C:\Users\maxim\RiderProjects\SharpTorch\SharpTorchSamples\obj\Debug\net8.0\ref\SharpTorchSamples.dll
-C:\Users\maxim\RiderProjects\SharpTorch\SharpTorchSamples\bin\Debug\net8.0\Data\t10k-images.idx3-ubyte
-C:\Users\maxim\RiderProjects\SharpTorch\SharpTorchSamples\bin\Debug\net8.0\Data\t10k-labels.idx1-ubyte
 C:\Users\maxim\RiderProjects\SharpTorch\SharpTorchSamples\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\maxim\RiderProjects\SharpTorch\SharpTorchSamples\bin\Debug\net8.0\System.Drawing.Common.dll
 C:\Users\maxim\RiderProjects\SharpTorch\SharpTorchSamples\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\maxim\RiderProjects\SharpTorch\SharpTorchSamples\bin\Debug\net8.0\Newtonsoft.Json.dll

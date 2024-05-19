@@ -1,5 +1,4 @@
 ﻿using SharpTorch.ActivationFunctions;
-using SharpTorch.Models;
 
 namespace SharpTorch.Layers;
 
@@ -7,8 +6,8 @@ public abstract class BaseLayer
 {
     protected internal bool TrainMode { get; set; } = true;
     
-    public int InputSize { get; init; }
-    public int OutputSize { get; init; }
+    public int InputSize { get; set; }
+    public int OutputSize { get; set; }
 
     public BaseActivation? ActivationFunction { get; set; }
     
