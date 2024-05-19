@@ -13,6 +13,20 @@ public class LinearLayer : BaseLayer
         {
             RandomizeWeights();
         }
+        else
+        {
+            for (int i = 0; i < Weights.GetLength(0); i++)
+            {
+                for (int x = 0; x < Weights.GetLength(1); x++)
+                {
+                    Weights[i, x] = 0.001F;
+                }
+            }
+            for (int i = 0; i < Biases.Length; i++)
+            {
+                Biases[i] = 0.001F;
+            }
+        }
     }
 
     protected override float[] ForwardImplementation(float[] input)

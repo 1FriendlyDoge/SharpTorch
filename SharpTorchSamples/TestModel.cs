@@ -10,7 +10,9 @@ public class TestModel : BaseModel
     {
         Layers =
         [
-            new LinearLayer(1, 1, new ReLU())
+            new LinearLayer(1, 64, new ReLU()),
+            new LinearLayer(64, 128, new ReLU()),
+            new LinearLayer(128, 1, new ReLU())
         ];
     }
 }

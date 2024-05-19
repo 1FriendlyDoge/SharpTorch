@@ -70,4 +70,31 @@ public abstract class BaseModel
             }
         }
     }
+
+    public void DebugPrint()
+    {
+        for (int i = 0; i < Layers.Length; i++)
+        {
+            BaseLayer layer = Layers[i];
+            Console.WriteLine($"Layer {i + 1}");
+            Console.WriteLine("\tWeights:");
+            Console.Write("\t\t");
+            for (int x = 0; x < layer.Weights.GetLength(0); x++)
+            {
+                for (int y = 0; y < layer.Weights.GetLength(1); y++)
+                {
+                    Console.Write($"{layer.Weights[x, y]:0.0000} ");
+                }
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("\tBiases:");
+            Console.Write("\t\t");
+            foreach (var t in layer.Biases)
+            {
+                Console.Write($"{t:0.0000} ");
+            }
+            Console.WriteLine();
+        }
+    }
 }

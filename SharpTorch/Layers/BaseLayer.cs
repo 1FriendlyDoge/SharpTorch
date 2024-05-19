@@ -10,12 +10,13 @@ public abstract class BaseLayer
     public int InputSize { get; init; }
     public int OutputSize { get; init; }
 
-    private BaseActivation? ActivationFunction { get; set; }
+    public BaseActivation? ActivationFunction { get; set; }
     
     public float[,] Weights = new float[0, 0];
     public float[] Biases = [];
     
     public float[] Inputs { get; private set; } = [];
+    public float[] RawOutputs { get; private set; } = [];
 
     protected BaseLayer(int inputSize, int outputSize, BaseActivation? activationFunction = null)
     {
@@ -32,6 +33,7 @@ public abstract class BaseLayer
         }
         
         float[] values = ForwardImplementation(input);
+        RawOutputs = values;
 
         if (ActivationFunction == null)
         {

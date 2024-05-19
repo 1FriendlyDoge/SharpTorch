@@ -1,4 +1,5 @@
-﻿using SharpTorch.Layers;
+﻿using SharpTorch.ActivationFunctions;
+using SharpTorch.Layers;
 using SharpTorch.Losses;
 using SharpTorch.Models;
 using SharpTorch.Structs;
@@ -106,11 +107,21 @@ public class Trainer
         }
         
         float[] outputGradients = loss.GradientAll(yPredicted, yResult);
-
+    
         for (int i = Model.Layers.Length - 1; i >= 0; i--)
         {
             float[] inputGradients = new float[Model.Layers[i].InputSize];
-
+            
+            // TODO: Experimental!
+            for (int j = 0; j < Model.Layers[i].OutputSize; j++)
+            {
+                BaseActivation? activationFunction = Model.Layers[i].ActivationFunction;
+                if (activationFunction != null)
+                {
+                    outputGradients[j] *= activationFunction.CalculateDerivative(Model.Layers[i].RawOutputs[j]);
+                }
+            }
+            
             // Scope Copies
             int i1 = i;
             float[] gradients = outputGradients;
@@ -125,10 +136,37 @@ public class Trainer
                 
                 biasGradients[i1][j] = gradients[j]; 
             });
-
+    
             outputGradients = inputGradients;
         }
-
+        
+        // TODO: find better solution for exploding gradients, this is a temporary solution
+        for (int i = Model.Layers.Length - 1; i >= 0; i--)
+        {
+            for (int x = 0; x < weightGradients[i].GetLength(0); x++)
+            {
+                for (int y = 0; y < weightGradients[i].GetLength(1); y++)
+                {
+                    weightGradients[i][x, y] = weightGradients[i][x, y] switch
+                    {
+                        > 1.0f => 1.0f,
+                        < -1.0f => -1.0f,
+                        _ => weightGradients[i][x, y]
+                    };
+                }
+            }
+            
+            for (int j = 0; j < biasGradients[i].Length; j++)
+            {
+                biasGradients[i][j] = biasGradients[i][j] switch
+                {
+                    > 1.0f => 1.0f,
+                    < -1.0f => -1.0f,
+                    _ => biasGradients[i][j]
+                };
+            }
+        }
+    
         return new BackpropagationResult(weightGradients, biasGradients);
     }
 }
