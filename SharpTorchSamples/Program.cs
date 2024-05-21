@@ -27,3 +27,4 @@ for (int i = 0; i < xData.GetLength(0); i++)
     Console.WriteLine($"Input: {xData[i, 0]}, Output: {output[0]}, Expected output: {yData[i, 0]}");
 }
 
+Console.ReadLine();

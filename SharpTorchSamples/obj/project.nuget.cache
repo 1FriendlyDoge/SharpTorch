@@ -1,12 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "r36vbDPanyYe8NphgBMiqXehUAJGMkKn1/YxBmLcEUmb7N2IJgqyb5ju6hXN2Hc4Mnzc+r+XFwoq4C0rhVjFuQ==",
+  "dgSpecHash": "I44vAeVsxW0fRSl6FQwsFWsGjIBn8SEFFr5UZXMR3AxdJ9e41v3k4fqgISEH6XgEMHCPGqRmpo6Q+SXkM47amQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorchSamples\\SharpTorchSamples.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.dotnet.ilcompiler\\8.0.4\\microsoft.dotnet.ilcompiler.8.0.4.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.4\\microsoft.net.illink.tasks.8.0.4.nupkg.sha512",
     "C:\\Users\\maxim\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
     "C:\\Users\\maxim\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
-    "C:\\Users\\maxim\\.nuget\\packages\\system.drawing.common\\8.0.5\\system.drawing.common.8.0.5.nupkg.sha512"
+    "C:\\Users\\maxim\\.nuget\\packages\\runtime.win-x64.microsoft.dotnet.ilcompiler\\8.0.4\\runtime.win-x64.microsoft.dotnet.ilcompiler.8.0.4.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\system.drawing.common\\8.0.5\\system.drawing.common.8.0.5.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.4\\microsoft.netcore.app.runtime.win-x64.8.0.4.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.4\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.4.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.4\\microsoft.aspnetcore.app.runtime.win-x64.8.0.4.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\runtime.win-x64.microsoft.dotnet.ilcompiler\\8.0.4\\runtime.win-x64.microsoft.dotnet.ilcompiler.8.0.4.nupkg.sha512"
   ],
   "logs": []
 }

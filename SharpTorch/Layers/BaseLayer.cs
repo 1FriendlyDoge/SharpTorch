@@ -26,14 +26,14 @@ public abstract class BaseLayer
 
     public float[] Forward(float[] input)
     {
+        float[] values = ForwardImplementation(input);
+        
         if (TrainMode)
         {
             Inputs = input;
+            RawOutputs = values;
         }
         
-        float[] values = ForwardImplementation(input);
-        RawOutputs = values;
-
         if (ActivationFunction == null)
         {
             return values;

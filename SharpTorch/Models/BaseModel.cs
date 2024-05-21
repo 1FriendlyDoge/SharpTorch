@@ -1,7 +1,4 @@
-﻿using System.Reflection;
-using Newtonsoft.Json;
-using SharpTorch.ActivationFunctions;
-using SharpTorch.Layers;
+﻿using SharpTorch.Layers;
 using SharpTorch.Structs;
 
 namespace SharpTorch.Models;
