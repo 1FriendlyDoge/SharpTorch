@@ -1,5 +1,6 @@
 ﻿using SharpTorch;
 using SharpTorch.Losses;
+using SharpTorch.Optimizers;
 using SharpTorchSamples;
 
 int inputSize = 10;
