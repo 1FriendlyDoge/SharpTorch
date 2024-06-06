@@ -20,8 +20,10 @@ public class Trainer
     private float[,] Y { get; set; }
     private int ValidationInterval { get; set; }
     private int DisplayValidationInterval { get; set; }
+    private float GradientClip { get; set; }
+    private CancellationTokenSource? CancellationTokenSource { get; set; }
     
-    public Trainer(BaseModel model, BaseLoss loss, float[,] x, float[,] y, float learningRate = 0.01f, BaseOptimizer? optimizer = null, int batchSize = 1, int epochs = 10, int validationInterval = 1, int displayValidationInterval = 5)
+    public Trainer(BaseModel model, BaseLoss loss, float[,] x, float[,] y, float learningRate = 0.01f, BaseOptimizer? optimizer = null, int batchSize = 1, int epochs = 10, int validationInterval = 1, int displayValidationInterval = 5, float gradientClip = 1.0F)
     {
         Model = model;
         Loss = loss;
@@ -34,26 +36,28 @@ public class Trainer
         Y = y;
         ValidationInterval = validationInterval;
         DisplayValidationInterval = displayValidationInterval;
+        GradientClip = gradientClip;
     }
     
     public void Train(CancellationTokenSource? cts = null)
     {
         cts ??= new CancellationTokenSource();
+        CancellationTokenSource = cts;
         Console.WriteLine("Training...");
         for (int epoch = 0; epoch < Epochs; epoch++)
         {
-            for (int dataIndex = 0; dataIndex < X.Length; dataIndex += BatchSize)
+            for (int dataIndex = 0; dataIndex < X.GetLength(0); dataIndex += BatchSize)
             {
                 if (cts is {IsCancellationRequested: true})
                 {
                     return;
                 }
                 
-                Task[] tasks = new Task[BatchSize];
+                Task?[] tasks = new Task[BatchSize];
                 BackpropagationResult backpropagationResult = new(Model);
                 for (int batchIndex = 0; batchIndex < BatchSize; batchIndex++)
                 {
-                    if (dataIndex + batchIndex >= X.Length)
+                    if (dataIndex + batchIndex >= X.GetLength(0))
                     {
                         break;
                     }
@@ -73,7 +77,12 @@ public class Trainer
                         backpropagationResult.Add(result);
                     }, cts.Token);
                 }
-                Task.WaitAll(tasks);
+                
+                foreach (Task? t in tasks)
+                {
+                    t?.Wait();
+                }
+                
                 backpropagationResult.Average(BatchSize);
                 Model.UpdateValues(backpropagationResult, LearningRate);
             }
@@ -89,7 +98,7 @@ public class Trainer
     {
         Model.Eval();
         float totalLoss = 0;
-        Parallel.For(0, X.Length, i =>
+        Parallel.For(0, X.GetLength(0), i =>
         {
             float[] xData = Utils.Project1D(X, i);
             float[] yResult = Utils.Project1D(Y, i);
@@ -97,6 +106,7 @@ public class Trainer
             float[] yPredicted = Model.Forward(xData);
             totalLoss += Loss.CalculateAll(yPredicted, yResult);
         });
+        float actualLoss = totalLoss / X.GetLength(0);
         
         if (Optimizer != null)
         {
@@ -105,8 +115,16 @@ public class Trainer
 
         if (epoch % DisplayValidationInterval == 0)
         {
-            Console.WriteLine($"Epoch: {epoch}/{Epochs}, Loss: {totalLoss / X.Length}, LR: {LearningRate}");
+            Console.WriteLine($"Epoch: {epoch}/{Epochs}, Loss: {actualLoss}, LR: {LearningRate}");
         }
+
+        if (actualLoss != 0)
+        {
+            return;
+        }
+
+        CancellationTokenSource?.Cancel();
+        Console.WriteLine("Loss is 0, stopping training...");
     }
 
     private BackpropagationResult Backward(float[] yPredicted, float[] yResult, BaseLoss loss)
@@ -161,23 +179,35 @@ public class Trainer
             {
                 for (int y = 0; y < weightGradients[i].GetLength(1); y++)
                 {
-                    weightGradients[i][x, y] = weightGradients[i][x, y] switch
+                    if (weightGradients[i][x, y] > MathF.Abs(GradientClip))
                     {
-                        > 1.0f => 1.0f,
-                        < -1.0f => -1.0f,
-                        _ => weightGradients[i][x, y]
-                    };
+                        weightGradients[i][x, y] = MathF.Abs(GradientClip);
+                    }
+                    else if (weightGradients[i][x, y] < MathF.Abs(GradientClip) * -1.0F)
+                    {
+                        weightGradients[i][x, y] = MathF.Abs(GradientClip) * -1.0F;
+                    }
+                    else
+                    {
+                        weightGradients[i][x, y] = weightGradients[i][x, y];
+                    }
                 }
             }
             
             for (int j = 0; j < biasGradients[i].Length; j++)
             {
-                biasGradients[i][j] = biasGradients[i][j] switch
+                if (biasGradients[i][j] > MathF.Abs(GradientClip))
                 {
-                    > 1.0f => 1.0f,
-                    < -1.0f => -1.0f,
-                    _ => biasGradients[i][j]
-                };
+                    biasGradients[i][j] = MathF.Abs(GradientClip);
+                }
+                else if (biasGradients[i][j] < MathF.Abs(GradientClip) * -1.0F)
+                {
+                    biasGradients[i][j] = MathF.Abs(GradientClip) * -1.0F;
+                }
+                else
+                {
+                    biasGradients[i][j] = biasGradients[i][j];
+                }
             }
         }
     

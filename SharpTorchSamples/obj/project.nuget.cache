@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "YKarPClzpZFKMyewmKac5LlPu+iisCoyKk7zebkfF92g3dlWP+FSSGc03GBiopOI4+q7BydsJDaWzWMBf3diqw==",
+  "dgSpecHash": "2VL2/l6jdmBTb7Zzo28uZQnjufLDAro5E67x2aCRy8aryl3/03Le5n3FfbHIOhwcpQd2LwMR8rkxkMvyM29vuQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorchSamples\\SharpTorchSamples.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\maxim\\.nuget\\packages\\csvhelper\\32.0.3\\csvhelper.32.0.3.nupkg.sha512",
     "C:\\Users\\maxim\\.nuget\\packages\\microsoft.dotnet.ilcompiler\\8.0.4\\microsoft.dotnet.ilcompiler.8.0.4.nupkg.sha512",
     "C:\\Users\\maxim\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.4\\microsoft.net.illink.tasks.8.0.4.nupkg.sha512",
     "C:\\Users\\maxim\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",

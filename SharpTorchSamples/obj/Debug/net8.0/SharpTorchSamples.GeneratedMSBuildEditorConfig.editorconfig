@@ -14,4 +14,4 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SharpTorchSamples
 build_property.ProjectDir = C:\Users\maxim\RiderProjects\SharpTorch\SharpTorchSamples\
 build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.EnableGeneratedComInterfaceComImportInterop = 
