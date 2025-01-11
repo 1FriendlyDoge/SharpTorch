@@ -47,9 +47,9 @@ public class LinearLayer : BaseLayer
         return output;
     }
 
-    private void RandomizeWeights()
+    private void RandomizeWeights(int seed = 0)
     {
-        Random random = new();
+        Random random = new(seed);
         for (int i = 0; i < Weights.GetLength(0); i++)
         {
             for (int x = 0; x < Weights.GetLength(1); x++)

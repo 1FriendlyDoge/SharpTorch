@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorchSamples\\SharpTorchSamples.csproj": {}
+    "C:\\Users\\maxim\\RiderProjects\\SharpTorchLocal\\SharpTorchSamples\\SharpTorchSamples.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorchSamples\\SharpTorchSamples.csproj": {
+    "C:\\Users\\maxim\\RiderProjects\\SharpTorchLocal\\SharpTorchSamples\\SharpTorchSamples.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorchSamples\\SharpTorchSamples.csproj",
+        "projectUniqueName": "C:\\Users\\maxim\\RiderProjects\\SharpTorchLocal\\SharpTorchSamples\\SharpTorchSamples.csproj",
         "projectName": "SharpTorchSamples",
-        "projectPath": "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorchSamples\\SharpTorchSamples.csproj",
+        "projectPath": "C:\\Users\\maxim\\RiderProjects\\SharpTorchLocal\\SharpTorchSamples\\SharpTorchSamples.csproj",
         "packagesPath": "C:\\Users\\maxim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorchSamples\\obj\\",
+        "outputPath": "C:\\Users\\maxim\\RiderProjects\\SharpTorchLocal\\SharpTorchSamples\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,15 +26,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorch\\SharpTorch.csproj": {
-                "projectPath": "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorch\\SharpTorch.csproj"
+              "C:\\Users\\maxim\\RiderProjects\\SharpTorchLocal\\SharpTorch\\SharpTorch.csproj": {
+                "projectPath": "C:\\Users\\maxim\\RiderProjects\\SharpTorchLocal\\SharpTorch\\SharpTorch.csproj"
               }
             }
           }
@@ -62,8 +61,12 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.4, )",
+              "version": "[8.0.10, )",
               "autoReferenced": true
+            },
+            "ScottPlot": {
+              "target": "Package",
+              "version": "[5.0.52, )"
             },
             "System.Drawing.Common": {
               "target": "Package",
@@ -92,18 +95,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorch\\SharpTorch.csproj": {
+    "C:\\Users\\maxim\\RiderProjects\\SharpTorchLocal\\SharpTorch\\SharpTorch.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorch\\SharpTorch.csproj",
+        "projectUniqueName": "C:\\Users\\maxim\\RiderProjects\\SharpTorchLocal\\SharpTorch\\SharpTorch.csproj",
         "projectName": "SharpTorch",
-        "projectPath": "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorch\\SharpTorch.csproj",
+        "projectPath": "C:\\Users\\maxim\\RiderProjects\\SharpTorchLocal\\SharpTorch\\SharpTorch.csproj",
         "packagesPath": "C:\\Users\\maxim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maxim\\RiderProjects\\SharpTorch\\SharpTorch\\obj\\",
+        "outputPath": "C:\\Users\\maxim\\RiderProjects\\SharpTorchLocal\\SharpTorch\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -118,7 +121,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -158,7 +160,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

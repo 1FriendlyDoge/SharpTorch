@@ -144,7 +144,6 @@ public class Trainer
         {
             float[] inputGradients = new float[Model.Layers[i].InputSize];
             
-            // TODO: Experimental!
             for (int j = 0; j < Model.Layers[i].OutputSize; j++)
             {
                 BaseActivation? activationFunction = Model.Layers[i].ActivationFunction;

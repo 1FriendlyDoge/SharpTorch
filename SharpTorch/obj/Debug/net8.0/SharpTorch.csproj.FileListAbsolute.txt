@@ -16,3 +16,16 @@ C:\Users\maxim\RiderProjects\SharpTorch\SharpTorch\obj\Debug\net8.0\refint\Sharp
 C:\Users\maxim\RiderProjects\SharpTorch\SharpTorch\obj\Debug\net8.0\SharpTorch.pdb
 C:\Users\maxim\RiderProjects\SharpTorch\SharpTorch\obj\Debug\net8.0\ref\SharpTorch.dll
 C:\Users\maxim\RiderProjects\SharpTorch\SharpTorch\obj\Debug\net8.0\SharpTorch.csproj.AssemblyReference.cache
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\bin\Debug\net8.0\SharpTorch.deps.json
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\bin\Debug\net8.0\SharpTorch.dll
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\bin\Debug\net8.0\SharpTorch.pdb
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\obj\Debug\net8.0\SharpTorch.csproj.AssemblyReference.cache
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\obj\Debug\net8.0\SharpTorch.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\obj\Debug\net8.0\SharpTorch.AssemblyInfoInputs.cache
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\obj\Debug\net8.0\SharpTorch.AssemblyInfo.cs
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\obj\Debug\net8.0\SharpTorch.csproj.CoreCompileInputs.cache
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\obj\Debug\net8.0\SharpTorch.sourcelink.json
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\obj\Debug\net8.0\SharpTorch.dll
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\obj\Debug\net8.0\refint\SharpTorch.dll
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\obj\Debug\net8.0\SharpTorch.pdb
+C:\Users\maxim\RiderProjects\SharpTorchLocal\SharpTorch\obj\Debug\net8.0\ref\SharpTorch.dll
